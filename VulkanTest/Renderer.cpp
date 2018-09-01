@@ -2,7 +2,7 @@
 #include <iostream>
 #include <assert.h>
 #include <vulkan/vulkan.h>
-
+#include <vector>
 
 
 Renderer::Renderer(ApplicationInfo* info)
@@ -52,6 +52,23 @@ void Renderer::_DeInitInstance()
 
 void Renderer::_InitDevice()
 {
+	// Enumerate devices
+	{
+		uint32_t gpuCount = 0;
+		auto res = vkEnumeratePhysicalDevices(_instance, &gpuCount, nullptr);
+		if (res != VK_SUCCESS)
+		{
+			std::cout << "VULKAN ERR  Failed to enumerate physical devices\n";
+		}
+
+		std::vector<VkPhysicalDevice> gpuList(gpuCount);
+		auto res = vkEnumeratePhysicalDevices(_instance, &gpuCount, gpuList.data());
+		if (res != VK_SUCCESS)
+		{
+			std::cout << "VULKAN ERR  Failed to enumerate physical devices\n";
+		}
+	}
+
 	// Create device creation info struct
 	VkDeviceCreateInfo deviceInfo {};
 	deviceInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
