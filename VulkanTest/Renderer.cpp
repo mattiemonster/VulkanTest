@@ -52,6 +52,11 @@ void Renderer::_DeInitInstance()
 
 void Renderer::_InitDevice()
 {
+	// Create device creation info struct
+	VkDeviceCreateInfo deviceInfo {};
+	deviceInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+
+	vkCreateDevice(NULL, &deviceInfo, nullptr, &_device);
 }
 
 void Renderer::_DeInitDevice()

@@ -16,6 +16,8 @@ private:
 
 private:
 	VkInstance _instance = nullptr;
+	VkDevice   _device   = nullptr;
+
 	ApplicationInfo* _info;
 
 };
