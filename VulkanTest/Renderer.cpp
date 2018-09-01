@@ -59,6 +59,7 @@ void Renderer::_InitDevice()
 		if (res != VK_SUCCESS)
 		{
 			std::cout << "VULKAN ERR  Failed to enumerate physical devices\n";
+			exit(-1);
 		}
 
 		std::vector<VkPhysicalDevice> gpuList(gpuCount);
@@ -66,7 +67,10 @@ void Renderer::_InitDevice()
 		if (res != VK_SUCCESS)
 		{
 			std::cout << "VULKAN ERR  Failed to enumerate physical devices\n";
+			exit(-1);
 		}
+
+		_gpu = gpuList[0];
 	}
 
 	// Create device creation info struct

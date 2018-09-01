@@ -15,8 +15,9 @@ private:
 	void _DeInitDevice();
 
 private:
-	VkInstance _instance = nullptr;
-	VkDevice   _device   = nullptr;
+	VkInstance       _instance = nullptr;
+	VkPhysicalDevice _gpu      = nullptr;
+	VkDevice         _device   = nullptr;
 
 	ApplicationInfo* _info;
 
